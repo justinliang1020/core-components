@@ -201,6 +201,17 @@ let child = {
         this.box2.el = this.simpleContainer
     },
 
+    // called from remove() in the template to remove any local resources when the component
+    // is destroyed
+    remove: function () {
+        this.simpleContainer.removeObject3D("box")
+        this.box.geometry.dispose()
+        this.box.material.dispose()
+        this.box2.geometry.dispose()
+        this.box2.material.dispose()
+        this.removeTemplate()
+    },
+
     // handle "interact" events for clickable entities
     clicked: function (evt) {
         // the evt.target will point at the object3D in this entity.  We can use
